@@ -1,0 +1,7 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/ngx-v-corporate-scaffold",
+  "lib": {
+    "entryFile": "src/public-api.ts"
+  }
+}

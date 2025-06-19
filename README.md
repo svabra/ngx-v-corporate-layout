@@ -20,6 +20,11 @@ ng generate library ngx-v-corporate-scaffold --standalone --prefix=corp
 
 ```
 
+Build it (otherwise the applying project cannot apply it if not in TS)
+```bash
+ng build ngx-v-corporate-scaffold
+```
+
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.7.
 

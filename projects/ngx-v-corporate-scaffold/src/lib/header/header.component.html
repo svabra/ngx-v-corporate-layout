@@ -23,13 +23,11 @@
     <nav class="header-links" aria-label="Main navigation">
       <ul>
         @if (links && links.length > 0) {
-        @for (link of links; track link.label) {
-        <li>
-          <a [routerLink]="link.url" class="header-link">{{ link.label }}</a>
-        </li>
-        }
-        } @else {
-        <li>There are no links :-)</li>
+          @for (link of links; track link.label) {
+          <li>
+            <a [routerLink]="link.url" class="header-link">{{ link.label }}</a>
+          </li>
+          }
         }
       </ul>
     </nav>
@@ -50,7 +48,5 @@
     }
   </div>
   }
-
-
 
 </header>

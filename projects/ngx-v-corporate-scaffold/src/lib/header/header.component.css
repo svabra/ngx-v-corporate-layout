@@ -1,0 +1,213 @@
+@import '../css/colors.css';
+
+.header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background-color: var(--vbs-black-main);
+  border-bottom: 1px solid var(--vbs-black-70);
+  z-index: 100;
+  display: block;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0rem 0rem 0rem 0rem;
+  min-height: 56px;
+}
+
+.meta-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--vbs-black-70);
+  padding: 0 2rem;
+  min-height: 32px;
+}
+
+.meta-nav-links {
+  display: flex;
+  gap: 1rem;
+  text-transform: uppercase;
+}
+
+.meta-nav-link {
+  color: #fff;
+  font-size: 0.85em;
+  text-decoration: none;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+
+.meta-nav-link:hover {
+  opacity: 1;
+}
+
+.meta-nav-shortcuts {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.meta-nav-shortcuts mat-icon {
+  color: #fff;
+}
+
+
+.logo-menu-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 2rem;
+}
+
+.logo-tagline {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 0.5rem 0.5rem 2rem
+}
+
+.logo-img {
+  height: 50px;
+}
+
+.show {
+  display: block !important;
+}
+
+.hide {
+  display: none !important;
+}
+
+.header-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.header-link {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  padding: 0.25em 0.75em;
+  border-radius: 5px;
+  transition: background 0.2s, color 0.2s;
+  position: relative;
+  font-size: 1rem;
+  outline: none;
+}
+
+.header-link.active,
+.header-link:hover {
+  background: var(--vbs-black-70);
+  color: var(--vbs-red);
+}
+
+.header-link::after {
+  content: '';
+  display: block;
+  height: 5px;
+  border-radius: 3px 3px 0 0;
+  background: transparent;
+  transition: background 0.2s;
+  margin-top: 6px;
+}
+
+.header-link.active::after,
+.menu-item:hover > .header-link::after {
+  background: var(--vbs-red, #FF0000);
+}
+
+.menu-item.has-submenu > .header-link {
+  cursor: pointer;
+  user-select: none;
+}
+
+.submenu-arrow {
+  vertical-align: middle;
+  margin-left: 6px;
+  transition: transform 0.2s;
+  font-size: 1.2em;
+}
+
+.submenu-arrow.open {
+  transform: rotate(180deg);
+}
+
+.submenu {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  min-width: 170px;
+  background: var(--vbs-black-70, #4D4D4D);
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.07), 0 1.5px 0 rgba(255,0,0,0.04);
+  z-index: 999;
+  padding: 0.25em 0;
+  animation: fadeInSubMenu 0.2s;
+}
+
+@keyframes fadeInSubMenu {
+  from { opacity: 0; transform: translateY(-12px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+.submenu-link {
+  display: block;
+  padding: 0.6em 1.2em;
+  color: #fff;
+  text-decoration: none;
+  transition: background 0.2s;
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+.submenu-link:hover {
+  background: var(--vbs-red, #FF0000);
+  color: #fff;
+}
+
+.appName-tagline {
+  padding: 0.5rem 0.5rem 0.6rem 4rem;
+  display: flex;
+  cursor: default;
+}
+
+.appName {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.tagline-wrapper {
+  display: inline;
+  position: relative;
+  padding-left: 0.2rem;
+  text-transform: uppercase;
+  color: var(--vbs-black-50);
+}
+
+.tagline {
+  padding-left: 0.5rem;
+  display: contents;
+  opacity: 1;
+  transition: opacity 0.35s;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+.tagline-fade {
+  animation: fadeInTagline 0.4s;
+}
+
+@keyframes fadeInTagline {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

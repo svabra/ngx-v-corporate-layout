@@ -9,15 +9,18 @@
     "tslib": "^2.3.0"
   },
   "sideEffects": false,
-  "module": "fesm2022/ngx-v-corporate-scaffold.mjs",
-  "typings": "index.d.ts",
   "exports": {
-    "./package.json": {
-      "default": "./package.json"
-    },
     ".": {
       "types": "./index.d.ts",
       "default": "./fesm2022/ngx-v-corporate-scaffold.mjs"
+    },
+    "./css/colors.css": {
+      "default": "./css/colors.css"
+    },
+    "./package.json": {
+      "default": "./package.json"
     }
-  }
+  },
+  "module": "fesm2022/ngx-v-corporate-scaffold.mjs",
+  "typings": "index.d.ts"
 }

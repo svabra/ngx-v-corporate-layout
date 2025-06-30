@@ -30,6 +30,21 @@ Navigate to the dist/ngx-v-corporate-scaffold folder, pack it up and push.
 cd dist/ngx-v-corporate-scaffold && npm pack
 ```
 
+for local development, simply run the command below and install it in the consuming project.
+```
+npm run pack-lib
+```
+
+### Create a new component
+
+When creating a component (or any other angular element for that matter) set the export flag and reference the lib.
+
+```
+ng generate component header --standalone --export --project=ngx-v-corporate-scaffold
+```
+
+At last, add it to the public-api.ts
+
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.7.
 

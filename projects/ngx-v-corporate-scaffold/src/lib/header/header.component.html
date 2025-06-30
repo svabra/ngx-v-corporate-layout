@@ -1,0 +1,56 @@
+<header class="header">
+  <div class="meta-nav">
+    <div class="meta-nav-links">
+      @if (metaLinks && metaLinks.length > 0) {
+      @for (link of metaLinks; track link.label) {
+      <a [routerLink]="link.url" class="meta-nav-link">{{ link.label }}</a>
+      }
+      }
+    </div>
+    <div class="meta-nav-shortcuts">
+      <ng-content select="[meta-nav-shortcuts]"></ng-content>
+      <!-- The implementing app can add whatever it wants - als long it is wrapped in a class meta-nav-shortcuts -->
+    </div>
+  </div>
+  <div class="logo-menu-container">
+    <div class="logo-tagline">
+      <img class="logo-img" [ngClass]="{ show: logoType === 'compact', hide: logoType !== 'compact' }"
+        src="/assets/ngx-v-corporate-scaffold/logos/Armee_Schild_schwarz_RGB.png" alt="Armed Forces (compact logo)" />
+      <img class="logo-img" [ngClass]="{ show: logoType === 'extended', hide: logoType !== 'extended' }"
+        src="/assets/ngx-v-corporate-scaffold/logos/Armee_Logo_EN_neg_RGB.png" alt="Armed Forces (extended logo)" />
+
+    </div>
+    <nav class="header-links" aria-label="Main navigation">
+      <ul>
+        @if (links && links.length > 0) {
+        @for (link of links; track link.label) {
+        <li>
+          <a [routerLink]="link.url" class="header-link">{{ link.label }}</a>
+        </li>
+        }
+        } @else {
+        <li>There are no links :-)</li>
+        }
+      </ul>
+    </nav>
+  </div>
+  @if (appName) {
+  <div class="appName-tagline">
+    <div class="appName" (mouseenter)="isAppNameHovered = true" (mouseleave)="isAppNameHovered = false">
+      {{ appName }}
+    </div>
+    @if (tagline) {
+    <span class="tagline-wrapper">
+      @if (catchyTagline && isAppNameHovered) {
+      <span class="tagline tagline-fade">{{ catchyTagline }}</span>
+      } @else {
+      <span class="tagline tagline-fade">{{ tagline }}</span>
+      }
+    </span>
+    }
+  </div>
+  }
+
+
+
+</header>

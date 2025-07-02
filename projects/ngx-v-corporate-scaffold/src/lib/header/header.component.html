@@ -1,52 +1,96 @@
 <header class="header">
+  <!-- Meta Navigation -->
   <div class="meta-nav">
     <div class="meta-nav-links">
       @if (metaLinks && metaLinks.length > 0) {
-      @for (link of metaLinks; track link.label) {
-      <a [routerLink]="link.url" class="meta-nav-link">{{ link.label }}</a>
-      }
+        @for (link of metaLinks; track link.label) {
+          <a [routerLink]="link.url" class="meta-nav-link">{{ link.label }}</a>
+        }
       }
     </div>
     <div class="meta-nav-shortcuts">
       <ng-content select="[meta-nav-shortcuts]"></ng-content>
-      <!-- The implementing app can add whatever it wants - als long it is wrapped in a class meta-nav-shortcuts -->
     </div>
   </div>
+
+  <!-- Logo and Main Navigation -->
   <div class="logo-menu-container">
     <div class="logo-tagline">
-      <img class="logo-img" [ngClass]="{ show: logoType === 'compact', hide: logoType !== 'compact' }"
-        src="/assets/ngx-v-corporate-scaffold/logos/Armee_Schild_schwarz_RGB.png" alt="Armed Forces (compact logo)" />
-      <img class="logo-img" [ngClass]="{ show: logoType === 'extended', hide: logoType !== 'extended' }"
-        src="/assets/ngx-v-corporate-scaffold/logos/Armee_Logo_EN_neg_RGB.png" alt="Armed Forces (extended logo)" />
-
+      <img
+        class="logo-img"
+        [ngClass]="{ show: logoType === 'compact', hide: logoType !== 'compact' }"
+        src="/assets/ngx-v-corporate-scaffold/logos/Armee_Schild_schwarz_RGB.png"
+        alt="Armed Forces (compact logo)"
+      />
+      <img
+        class="logo-img"
+        [ngClass]="{ show: logoType === 'extended', hide: logoType !== 'extended' }"
+        src="/assets/ngx-v-corporate-scaffold/logos/Armee_Logo_EN_neg_RGB.png"
+        alt="Armed Forces (extended logo)"
+      />
     </div>
+
     <nav class="header-links" aria-label="Main navigation">
       <ul>
         @if (links && links.length > 0) {
-          @for (link of links; track link.label) {
-          <li>
-            <a [routerLink]="link.url" class="header-link">{{ link.label }}</a>
-          </li>
+          @for (link of links; track link.label; let idx = $index) {
+            <li class="menu-item" [class.has-submenu]="link.subMenu?.length">
+              <a
+                [routerLink]="link.url"
+                class="header-link"
+                (click)="onMenuClick($event, idx, !!link.subMenu?.length)"
+                [class.active]="openedMenuIndex === idx"
+                tabindex="0"
+              >
+                {{ link.label }}
+                @if (link.subMenu?.length) {
+                  <span
+                    class="submenu-arrow"
+                    [class.open]="openedMenuIndex === idx"
+                  ></span> 
+                }
+              </a>
+            </li>
           }
         }
       </ul>
     </nav>
   </div>
+
+  <!-- App Name and Tagline -->
   @if (appName) {
-  <div class="appName-tagline">
-    <div class="appName" (mouseenter)="isAppNameHovered = true" (mouseleave)="isAppNameHovered = false">
-      {{ appName }}
-    </div>
-    @if (tagline) {
-    <span class="tagline-wrapper">
-      @if (catchyTagline && isAppNameHovered) {
-      <span class="tagline tagline-fade">{{ catchyTagline }}</span>
-      } @else {
-      <span class="tagline tagline-fade">{{ tagline }}</span>
+    <div class="appName-tagline">
+      <div class="appName" (mouseenter)="isAppNameHovered = true" (mouseleave)="isAppNameHovered = false">
+        {{ appName }}
+      </div>
+      @if (tagline) {
+        <span class="tagline-wrapper">
+          @if (catchyTagline && isAppNameHovered) {
+            <span class="tagline tagline-fade">{{ catchyTagline }}</span>
+          } @else {
+            <span class="tagline tagline-fade">{{ tagline }}</span>
+          }
+        </span>
       }
-    </span>
-    }
-  </div>
+    </div>
   }
 
+  <!-- Submenu (full-width, at bottom of header) -->
+  @if (openedMenuIndex !== null && links[openedMenuIndex]?.subMenu?.length) {
+    <!-- Backdrop to close submenu on click elsewhere -->
+    <div class="mega-submenu-backdrop" (click)="closeSubmenu()"></div>
+    <div class="mega-submenu">
+      <ul>
+        @for (sub of links[openedMenuIndex].subMenu; track sub.label) {
+          <li>
+            <a
+              [routerLink]="sub.url"
+              class="submenu-link"
+              (click)="closeSubmenu()"
+            >{{ sub.label }}</a>
+          </li>
+        }
+      </ul>
+    </div>
+  }
 </header>

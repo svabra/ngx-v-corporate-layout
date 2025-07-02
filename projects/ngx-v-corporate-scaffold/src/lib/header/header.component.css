@@ -8,12 +8,11 @@
   border-bottom: 1px solid var(--vbs-black-70);
   z-index: 100;
   display: block;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0rem 0rem 0rem 0rem;
+  padding: 0;
   min-height: 56px;
 }
 
+/* ------------------- Meta Nav ------------------- */
 .meta-nav {
   display: flex;
   justify-content: space-between;
@@ -47,11 +46,7 @@
   align-items: center;
 }
 
-.meta-nav-shortcuts mat-icon {
-  color: #fff;
-}
-
-
+/* ------------------- Logo & Menu ------------------- */
 .logo-menu-container {
   display: flex;
   align-items: center;
@@ -63,7 +58,7 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 0.5rem 0.5rem 0.5rem 2rem
+  padding: 0.5rem 0.5rem 0.5rem 2rem;
 }
 
 .logo-img {
@@ -78,9 +73,21 @@
   display: none !important;
 }
 
-.header-links {
+/* ------------------- Main Navigation ------------------- */
+.header-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
-  gap: 1rem;
+  flex-direction: row;
+  gap: 2rem;
+  align-items: center;
+}
+
+.header-links li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .header-link {
@@ -97,8 +104,8 @@
 
 .header-link.active,
 .header-link:hover {
-  background: var(--vbs-black-70);
-  color: var(--vbs-red);
+  /* background: var(--vbs-black-70); */
+  color: #fff;
 }
 
 .header-link::after {
@@ -121,28 +128,71 @@
   user-select: none;
 }
 
-.submenu-arrow {
+/* Submenu arrow (Unicode ▼) */
+/* .submenu-arrow {
+  font-size: 1.1em;
   vertical-align: middle;
   margin-left: 6px;
+  display: inline-block;
   transition: transform 0.2s;
-  font-size: 1.2em;
 }
-
 .submenu-arrow.open {
   transform: rotate(180deg);
+} */
+
+/* ------------------- Mega Submenu (full-width) ------------------- */
+.mega-submenu-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  background: transparent;
 }
 
-.submenu {
-  position: absolute;
+.mega-submenu {
+  position: fixed;
   left: 0;
-  top: 100%;
-  min-width: 170px;
-  background: var(--vbs-black-70, #4D4D4D);
-  border-radius: 0 0 8px 8px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.07), 0 1.5px 0 rgba(255,0,0,0.04);
-  z-index: 999;
-  padding: 0.25em 0;
+  top: 100px;
+  width: 100vw;
+  background: var(--vbs-black-main, #181818);
+  z-index: 1001;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.07);
+  padding: 1.5rem 0;
+  display: flex;
+  justify-content: center;
   animation: fadeInSubMenu 0.2s;
+}
+
+.mega-submenu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  gap: 2rem;
+}
+
+.mega-submenu li {
+  margin: 0;
+  padding: 0;
+}
+
+.mega-submenu .submenu-link {
+  display: block;
+  padding: 0.5rem 6rem 0.5rem 0rem;
+  color: #fff;
+  background: transparent;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  transition: background 0.15s, color 0.15s;
+}
+
+.mega-submenu .submenu-link:hover,
+.mega-submenu .submenu-link:active {
+  /* background: var(--vbs-red, #FF0000); */
+  color: #fff;
 }
 
 @keyframes fadeInSubMenu {
@@ -150,21 +200,7 @@
   to { opacity: 1; transform: translateY(0);}
 }
 
-.submenu-link {
-  display: block;
-  padding: 0.6em 1.2em;
-  color: #fff;
-  text-decoration: none;
-  transition: background 0.2s;
-  font-size: 1rem;
-  white-space: nowrap;
-}
-
-.submenu-link:hover {
-  background: var(--vbs-red, #FF0000);
-  color: #fff;
-}
-
+/* ------------------- App Name & Tagline ------------------- */
 .appName-tagline {
   padding: 0.5rem 0.5rem 0.6rem 4rem;
   display: flex;
@@ -188,8 +224,8 @@
 }
 
 .tagline {
-  padding-left: 0.5rem;
   display: contents;
+  padding-left: 0.5rem;
   opacity: 1;
   transition: opacity 0.35s;
   position: absolute;
@@ -203,11 +239,6 @@
 }
 
 @keyframes fadeInTagline {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }

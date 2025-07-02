@@ -18,19 +18,28 @@ interface MenuItem {
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
- 
-@Input() appName ?: string;
-@Input() tagline ?: string;
-@Input() catchyTagline ?: string;
-@Input() links: MenuItem [] = [];
-@Input() metaLinks: { label: string; url: string } [] = [];
-@Input() logoType: LogoType = 'extended';
 
-isAppNameHovered = false;
-openedMenuIndex: number | null = null;
+  @Input() appName?: string;
+  @Input() tagline?: string;
+  @Input() catchyTagline?: string;
+  @Input() links: MenuItem[] = [];
+  @Input() metaLinks: { label: string; url: string }[] = [];
+  @Input() logoType: LogoType = 'extended';
 
-onMenuClick(idx: number): void {
-  this.openedMenuIndex = this.openedMenuIndex === idx ? null : idx;
-}
+  isAppNameHovered = false;
+  openedMenuIndex: number | null = null;
+
+  onMenuClick(event: Event, idx: number, hasSubmenu: boolean): void {
+    if (hasSubmenu) {
+      event.preventDefault();
+      this.openedMenuIndex = this.openedMenuIndex === idx ? null : idx;
+    } else {
+      this.closeSubmenu();
+    }
+  }
+
+  closeSubmenu(): void {
+    this.openedMenuIndex = null;
+  }
 
 }
